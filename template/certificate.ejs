@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             line-height: 1.6;
             color: #333;
         }
+
         .certificate {
             max-width: 1000px;
             margin: 50px auto;
@@ -18,19 +20,20 @@
             border: 2px solid #4CAF50;
             border-radius: 10px;
         }
+
         .second-page {
             max-width: 1000px;
             margin: 80px auto;
             padding: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
         }
+
         .footer {
             text-align: center;
             margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
 
     <div class="certificate">
@@ -39,50 +42,111 @@
 
         <p class="mb-4">Certifica que,</p>
 
-        <p class="text-lg font-bold mb-2">Cleiton Evans</p>
+        <p class="text-lg font-bold mb-2">
+            <%= certificate.name %>
+        </p>
 
-        <p>CPF: 107.083.489-04</p>
+        <p>CPF: <%= certificate.document %>
+        </p>
 
         <p>Participou do treinamento de</p>
 
-        <p class="text-lg font-bold mb-2">Treinamento NR35 Trabalho em Altura com Caminhões</p>
+        <p class="text-lg font-bold mb-2">
+            <%= certificate.course %>
+        </p>
 
-        <p>de acordo com a Norma Regulamentadora 35 (NR 35), da Portaria SIT Nº 313, de 23/03/2012 do Ministério do Trabalho, com carga horária de 8 horas.</p>
+        <p>de acordo com a <%= certificate.rule %>, com carga horária de <%= certificate.time %>.</p>
 
-        <p>Data: 07 de Janeiro de 2023</p>
+        <p>Data: <%= certificate.conclusion_date %>
+        </p>
 
-       <div class="flex flex-row mt-10 gap-10">
-            <div class="flex flex-col">  
+        <div class="flex flex-row mt-10 gap-10">
+            <div class="flex flex-col">
                 <p>------------------------------------------------</p>
                 <p class="text-xs">RENY DE SOUZA <br> TST <br> BPC <br> INST. NR20
                     Reg. MTE 6255/SC</p>
             </div>
-            <div class="flex flex-col">  
+            <div class="flex flex-col">
                 <p>------------------------------------------------</p>
                 <p class="text-xs">PARTICIPANTE</p>
             </div>
-       </div>
+        </div>
 
         <div class="footer mt-4">
             <p class="text-green-500">ST CAPACITAÇÃO EM SEGURANÇA DO TRABALHO</p>
             <p class="text-xs">CENTRO DE TREINAMENTO<br>
-            NR 12, 18, 20, 33, 35<br>
-            CIPA - BRIG. COMB. INCÊNDIO<br>
-            PPRA - PCMSO<br>
-            <br>
-            RENY DE SOUZA BUENO - ME<br>
-            CNPJ: 19.003.553/0001-26<br>
-            Contatos: (41) 99810-8728 / 99926-9551<br>
-            souzatreinamentos@hotmail.com.br<br>
-            site: <a href="https://www.souzatreinamentosst.com.br/">https://www.souzatreinamentosst.com.br/</a></p>
+                NR 12, 18, 20, 33, 35<br>
+                CIPA - BRIG. COMB. INCÊNDIO<br>
+                PPRA - PCMSO<br>
+                <br>
+                RENY DE SOUZA BUENO - ME<br>
+                CNPJ: 19.003.553/0001-26<br>
+                Contatos: (41) 99810-8728 / 99926-9551<br>
+                souzatreinamentos@hotmail.com.br<br>
+                site: <a href="https://www.souzatreinamentosst.com.br/">https://www.souzatreinamentosst.com.br/</a>
+            </p>
         </div>
 
     </div>
 
     <!-- second page -->
     <div class="second-page">
-        <h1>2 pagina</h1>
+        <div class="certificate">
+
+            <div class="text-center mb-4">
+                <h2 class="text-2xl font-bold"><%= certificate.course %></h2>
+                <p>Carga Horária: <%= certificate.time %></p>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-xl font-bold mb-2">I) Conteúdo programático teórico:</h3>
+                <% if (certificate.content_modules.length > 0) { %>
+                    <ul>
+                    <% certificate.content_modules.forEach(item => { %>
+                            <li><%= item.title %></li>
+                        </tr>
+                    <%  }); %>
+                <% } %>
+                </ul>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-lg font-bold mb-2">Responsável Técnico:</h3>
+                <div class="flex flex-row gap-10">
+                    <div class="text-sm">
+                        <p><b>RENY DE SOUZA BUENO</b></p>
+                        <p>REG. MTE - 6255/SC</p>
+                        <p>CPF: 849.139.409-53</p>
+                        <p>CAPACITAÇÃO DO INSTRUTOR</p>
+                        <ul>
+                            <li>TÉCNICO DE SEGURANÇA DO TRABALHO</li>
+                            <li>BOMBEIRO PROFISSIONAL CIVIL 300H</li>
+                            <li>EMERGÊNCIA COM INFLAMÁVEIS 60H</li>
+                            <li>SUPERVISOR TRAB. EM ALTURA 40H</li>
+                            <li>AUX. ENF MILITAR - HGEC - CURITIBA 600H</li>
+                        </ul>
+                    </div>
+                    <div class="text-sm">
+                        <p><b>ROSANE RODRIGUES TAVARES</b></p>
+                        <p>REG. MTE. - 14412/PR/p>
+                        <p>CPF: 620.692.339-87</p>
+                        <p>CAPACITAÇÃO DO INSTRUTOR</p>
+                        <ul>
+                            <li>TÉCNICO DE SEGURANÇA DO TRABALHO</li>
+                            <li>SUPERVISOR TRAB. EM ALTURA 40H</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer mt-4">
+                <p class="text-xs">SOUZA SEGURANÇA DO TRABALHO<br>
+                    VALIDADE ATÉ 06/11/2023</p>
+            </div>
+
+        </div>
     </div>
 
 </body>
+
 </html>

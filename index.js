@@ -3,7 +3,11 @@ const ejs = require('ejs')
 const path = require('path')
 const puppeteer = require('puppeteer')
 const app = express()
-const passengers = require('./mocks/passengers.js');
+const bodyParser = require('body-parser');
+
+// const certificate = require('./mocks/certificate.js');
+
+app.use(bodyParser.json());
 
 app.get('/pdf', async(request, response) => {
 
@@ -31,11 +35,11 @@ app.get('/pdf', async(request, response) => {
 })
 
 app.get('/', (request, response) => {
+    const certificate = {...request.body};
 
     const filePath = path.join(__dirname, "template", "certificate.ejs")
-
     
-    ejs.renderFile(filePath, { passengers }, (err, html) => {
+    ejs.renderFile(filePath, { certificate }, (err, html) => {
         if(err) {
             return response.send('Erro na leitura do arquivo')
         }
